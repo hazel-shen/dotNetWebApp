@@ -33,8 +33,11 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-
-- task: DotNetCoreCLI@2
+- task: AzureWebApp@1
   inputs:
-    command: 'publish'
-    publishWebProjects: true
+    azureSubscription: 'Pay-As-You-Go(1bd1f238-6e9d-4075-b7e0-398b8047cc3f)'
+    appType: 'webAppLinux'
+    appName: 'web-app'
+    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    runtimeStack: 'DOTNETCORE|3.0'
+    startUpCommand: 'dotnet run'
